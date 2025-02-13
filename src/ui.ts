@@ -29,7 +29,9 @@ export class UIManager {
             placeHolder: 'Manage Prompts'
         });
 
-        if (!selection) return;
+        if (!selection) {
+            return;
+        }
 
         switch (selection.action) {
             case PromptManagerAction.AddNewQuick:
@@ -58,13 +60,17 @@ export class UIManager {
             } prompt`,
             validateInput: text => text ? null : 'Name is required'
         });
-        if (!name) return;
+        if (!name) {
+            return;
+        }
 
         const prompt = await MultiLineInputBox.show(
             'Enter Prompt',
             'Type your prompt here. Use Cmd+Enter (or Ctrl+Enter) to save, Escape to cancel.'
         );
-        if (!prompt) return;
+        if (!prompt) {
+            return;
+        }
 
         const newPrompt: SavedPrompt = {
             id: prompt
@@ -91,7 +97,9 @@ export class UIManager {
             } prompt`,
             validateInput: text => text ? null : 'Name is required'
         });
-        if (!name) return;
+        if (!name) {
+            return;
+        }
 
         const promptText = await MultiLineInputBox.show(
             'Edit Prompt',
@@ -99,7 +107,9 @@ export class UIManager {
             prompt.prompt
         );
 
-        if (!promptText) return;
+        if (!promptText) {
+            return;
+        }
 
         const updatedPrompt: SavedPrompt = {
             ...prompt,
