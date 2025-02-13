@@ -2,18 +2,22 @@ import * as vscode from 'vscode';
 
 import { UIManager } from './ui';
 import { StorageManager } from './storage';
-import { CursorCommands, EditorCommands } from './types';
+import { CursorCommands, EditorCommands, PromptManagerAction } from './types';
 
 /**
  * Executes a prompt in the Cursor executePromptInQuickModal bar using clipboard as intermediary
  */
-async function executePromptInQuickModal(promptText: string): Promise<void> {
+async function executePromptInModal(promptText: string, action: PromptManagerAction): Promise<void> {
 	// Store the original clipboard content
 	const originalClipboard = await vscode.env.clipboard.readText();
+
+	const modalToOpen: CursorCommands = action === PromptManagerAction.AddNewQuick 
+		? CursorCommands.OpenNonComposerModal 
+		: CursorCommands.OpenComposerModal;
 	
 	try {
 		await vscode.env.clipboard.writeText(promptText);
-		await vscode.commands.executeCommand(CursorCommands.OpenNonComposerModal.valueOf());
+		await vscode.commands.executeCommand(modalToOpen.valueOf());
 		await vscode.commands.executeCommand(CursorCommands.FocusAiPopup.valueOf());
 		await new Promise(resolve => setTimeout(resolve, 50));
 		await vscode.commands.executeCommand(EditorCommands.Paste.valueOf());
@@ -61,7 +65,8 @@ export async function activate(context: vscode.ExtensionContext) {
 		const items = Object.values(prompts).map(prompt => ({
 			label: prompt.name,
 			description: prompt.name,
-			prompt: prompt.prompt
+			prompt: prompt.prompt,
+			action: prompt.action
 		}));
 
 		const selection = await vscode.window.showQuickPick(items, {
@@ -69,7 +74,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		});
 
 		if (selection) {
-			await executePromptInQuickModal(selection.prompt);
+			await executePromptInModal(selection.prompt, selection.action);
 		}
 	});
 	context.subscriptions.push(disposable);
@@ -112,7 +117,7 @@ export async function activate(context: vscode.ExtensionContext) {
 				const disposable = vscode.commands.registerCommand(
 					commandId,
 					async () => {
-						await executePromptInQuickModal(prompt.prompt);
+						await executePromptInModal(prompt.prompt, prompt.action);
 					}
 				);
 

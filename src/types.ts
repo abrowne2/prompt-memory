@@ -2,6 +2,7 @@ export interface SavedPrompt {
     id: string;
     name: string;
     prompt: string;
+    action: PromptManagerAction;
 }
 
 export interface PromptStorage {
@@ -26,7 +27,8 @@ export enum EditorCommands {
  * Actions available in the prompt manager quick pick menu
  */
 export enum PromptManagerAction {
-    AddNew = 'Add New',
+    AddNewQuick = 'Add New Quick Prompt',
+    AddNewComposer = 'Add New Composer Prompt',
     ClearAll = 'Clear All',
     Edit = 'Edit'
 }

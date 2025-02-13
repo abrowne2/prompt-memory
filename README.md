@@ -18,12 +18,24 @@ You can then add keyboard shortcuts to quickly access and execute them. This is 
 
 ## Usage Instructions
 
+### What prompts can be added?
+
+- There are two types of prompts that can be added: "quick" and "composer". The quick prompt is the small modal you typically see with `CMD+K` in cursor. And subsequently, the composer prompt is the other modal, which opens as a bar.
+
+### How to add a prompt? 
+
 - You can either open the command palette and search for "Manage Prompt Shortcuts" to open the shortcut manager or, the preferred method of using the hotkey, `cmd+shift+e`. That is configurable in the editor settings.
 
+### Animated instructions below  
 
-For example if there is an image subfolder under your extension project workspace:
+(The below instructions are gifs, they should render on the README on GitHub if not directly in markdown).
 
-![](./usage_gifs/executingprompt.gif)
+### Opening the shortcut manager
+
+
+### Executing a "quick" prompt via a keyboard shortcut
+
+![](https://github.com/abrowne2/shortcut-prompt/blob/main/usage_gifs/executingprompt.gif)
 
 ## WIP 
 

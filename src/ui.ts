@@ -13,8 +13,12 @@ export class UIManager {
 
         const selection = await vscode.window.showQuickPick([
             { 
-                label: `${VSCodeIcon.Add} Add New Prompt`, 
-                action: PromptManagerAction.AddNew 
+                label: `${VSCodeIcon.Add} Add New Quick Prompt`, 
+                action: PromptManagerAction.AddNewQuick 
+            },
+            { 
+                label: `${VSCodeIcon.Add} Add New Composer Prompt`, 
+                action: PromptManagerAction.AddNewComposer 
             },
             { 
                 label: `${VSCodeIcon.ClearAll} Clear All Prompts`, 
@@ -28,8 +32,11 @@ export class UIManager {
         if (!selection) return;
 
         switch (selection.action) {
-            case PromptManagerAction.AddNew:
-                await this.addNewPrompt();
+            case PromptManagerAction.AddNewQuick:
+                await this.addNewPrompt(PromptManagerAction.AddNewQuick);
+                break;
+            case PromptManagerAction.AddNewComposer:
+                await this.addNewPrompt(PromptManagerAction.AddNewComposer);
                 break;
             case PromptManagerAction.ClearAll:
                 await vscode.commands.executeCommand('prompt-memory.clearAllPrompts');
@@ -42,9 +49,13 @@ export class UIManager {
         }
     }
 
-    private static async addNewPrompt(): Promise<void> {
+    private static async addNewPrompt(action: PromptManagerAction): Promise<void> {
         const name = await vscode.window.showInputBox({
-            placeHolder: 'Enter prompt name',
+            placeHolder: `Enter prompt name for ${
+                action === PromptManagerAction.AddNewQuick 
+                    ? 'quick' 
+                    : 'composer'
+            } prompt`,
             validateInput: text => text ? null : 'Name is required'
         });
         if (!name) return;
@@ -63,16 +74,21 @@ export class UIManager {
                 .join('-'),
             name,
             prompt,
+            action
         };
 
         await StorageManager.savePrompt(newPrompt);
-        vscode.window.showInformationMessage(`Prompt "${name}" saved successfully`);
+        vscode.window.showInformationMessage(`Prompt "${name}" saved successfully. You can now add a keyboard shortcut to execute it.`);
     }
 
     private static async editPrompt(prompt: SavedPrompt): Promise<void> {
         const name = await vscode.window.showInputBox({
             value: prompt.name,
-            placeHolder: 'Enter prompt name',
+            placeHolder: `Enter prompt name for ${
+                prompt.action === PromptManagerAction.AddNewQuick 
+                    ? 'quick' 
+                    : 'composer'
+            } prompt`,
             validateInput: text => text ? null : 'Name is required'
         });
         if (!name) return;
