@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abrowne2/shortcut-prompt.git"
+    "url": "https://github.com/abrowne2/prompt-memory.git"
   },
   "icon": "icon.png",
   "engines": {

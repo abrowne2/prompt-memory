@@ -26,6 +26,8 @@ You can then add keyboard shortcuts to quickly access and execute them. This is 
 
 - You can either open the command palette and search for "Manage Prompt Shortcuts" to open the shortcut manager or, the preferred method of using the hotkey, `cmd+shift+e`. That is configurable in the editor settings.
 
+![Manage Prompt Shortcuts](https://github.com/abrowne2/prompt-memory/blob/main/usage_gifs/manageshortcuts.png)
+
 ### Animated instructions below  
 
 (The below instructions are gifs, they should render on the README on GitHub if not directly in markdown).
@@ -35,7 +37,7 @@ You can then add keyboard shortcuts to quickly access and execute them. This is 
 
 ### Executing a "quick" prompt via a keyboard shortcut
 
-![](https://github.com/abrowne2/shortcut-prompt/blob/main/usage_gifs/executingprompt.gif)
+![Executing a "quick" prompt](https://github.com/abrowne2/prompt-memory/blob/main/usage_gifs/executingprompt.gif)
 
 ## WIP 
 
