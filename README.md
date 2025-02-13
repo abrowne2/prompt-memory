@@ -23,7 +23,7 @@ You can then add keyboard shortcuts to quickly access and execute them. This is 
 
 For example if there is an image subfolder under your extension project workspace:
 
-![Executing a prompt](usage_gifs/executingprompt.gif)
+![](./usage_gifs/executingprompt.gif)
 
 ## WIP 
 
