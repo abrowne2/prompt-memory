@@ -1,6 +1,6 @@
 # Prompt Memory
 
-"Prompt Memory" allows you to save and reuse prompts in Cursor.
+This allows you to save and reuse prompts in Cursor.
 You can then add keyboard shortcuts to quickly access and execute them. This is useful if you have a lot of frequently used prompts; such as formatting code, adding documentation, or adding tests. **Any wasted keystroke is a waste of time**.
 
 ## Note
