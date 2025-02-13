@@ -32,8 +32,9 @@ You can then add keyboard shortcuts to quickly access and execute them. This is 
 
 (The below instructions are gifs, they should render on the README on GitHub if not directly in markdown).
 
-### Opening the shortcut manager
+### Opening the shortcut manager and adding a new prompt
 
+![Opening the shortcut manager and adding a new prompt](https://github.com/abrowne2/prompt-memory/blob/main/usage_gifs/enterandexecute.gif)
 
 ### Executing a "quick" prompt via a keyboard shortcut
 
@@ -47,4 +48,4 @@ You can then add keyboard shortcuts to quickly access and execute them. This is 
 
 ### 1.0.0
 
-Initial release of Prompt Memory.
+Initial release
